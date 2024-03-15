@@ -24,12 +24,10 @@ public class JDBCExample3 {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		
 		try {
 			
 			System.out.print("부서명 입력 : "); // 총무부
 			String input = sc.nextLine();
-			
 			
 			// JDBC 참조변수에 알맞은 객체 대입
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -38,15 +36,15 @@ public class JDBCExample3 {
 			String ip = "localhost"; // DB 서버 컴퓨터 IP
 			String port = ":1521"; // 포트번호
 			String sid = ":XE"; // DB 이름
-			String user = "kh_ohj"; // 사용자계정
+			String user = "kh_cmh"; // 사용자계정
 			String pw = "kh1234"; // 비밀번호
 			
-			conn = DriverManager.getConnection(type+ip+port+sid,user,pw);
+			conn = DriverManager.getConnection(type+ip+port+sid, user, pw);
 			
 			// SQL 작성
-			String sql =  "SELECT EMP_NAME, NVL(DEPT_TITLE, '부서없음') AS DEPT_TITLE, SALARY"
+			String sql = "SELECT EMP_NAME, NVL(DEPT_TITLE, '부서없음') AS DEPT_TITLE, SALARY"
 					+ " FROM EMPLOYEE"
-					+ " LEFT JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID)"
+					+ " LEFT JOIN DEPARTMENT ON(DEPT_CODE = DEPT_ID)"
 					+ " WHERE NVL(DEPT_TITLE, '부서없음') = '" + input + "'";
 			// Java에서 작성되는 SQL에
 			// 문자열 변수 추가할 경우
@@ -58,7 +56,7 @@ public class JDBCExample3 {
 			
 			rs = stmt.executeQuery(sql);
 			
-			// 조회 결과(rs) 를 List 옮겨 담기
+			// 조회 결과(rs) 를 List 옮겨담기
 			List<Emp> list = new ArrayList<Emp>();
 			
 			while(rs.next()) {
@@ -71,15 +69,16 @@ public class JDBCExample3 {
 				// Emp 객체를 생성하여 컬럼값 담기
 				Emp emp = new Emp(empName, deptTitle, salary);
 				
-				// 생성된 Emp객체를 list에 추가
+				// 생성된 Emp 객체를 List에 추가
 				list.add(emp);
 			}
 			
-			// 만약에 List에 추가된 EMP 객체가 없다면 "조회 결과 없음"
+			// 만약에 List에 추가되면 Emp 객체가 없다면 "조회 결과 없음"
 			// 있다면 순차적으로 출력
 			
 			if(list.isEmpty()) { // List가 비어있을 경우
 				System.out.println("조회 결과 없음");
+				
 			} else {
 				
 				// 향상된 for문
@@ -87,11 +86,14 @@ public class JDBCExample3 {
 					System.out.println(emp);
 				}
 				
+				
 			}
 			
-	
-		} catch(Exception e) {
+			
+			
+		} catch (Exception e) {
 			e.printStackTrace();
+			
 		} finally {
 			
 			try {
@@ -100,7 +102,7 @@ public class JDBCExample3 {
 				if(stmt != null) stmt.close();
 				if(conn != null) conn.close();
 				
-			} catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			

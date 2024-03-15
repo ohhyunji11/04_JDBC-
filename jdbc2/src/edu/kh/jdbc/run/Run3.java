@@ -6,7 +6,6 @@ import edu.kh.jdbc.model.service.TestService;
 import edu.kh.jdbc.model.vo.TestVO;
 
 public class Run3 {
-	
 	public static void main(String[] args) {
 		
 		// 번호, 제목, 내용을 입력받아
@@ -20,32 +19,29 @@ public class Run3 {
 		
 		TestService service = new TestService();
 		
+		
 		try {
 			
 			
-		
-			
-			
-			System.out.println("수정할 번호 입력 : ");
+			System.out.print("수정할 번호 입력 : ");
 			int testNo = sc.nextInt();
 			
 			sc.nextLine(); // 입력버퍼에 남은 개행문자 제거
 			
-			System.out.println("제목 : ");
+			System.out.print("제목 : ");
 			String testTitle = sc.nextLine();
 			
-			
-			System.out.println("내용 : ");
+			System.out.print("내용 : ");
 			String testContent = sc.nextLine();
 			
 			TestVO vo = new TestVO(testNo, testTitle, testContent);
 			
+			
 			int result = service.update(vo);
 			
 			if(result > 0) {
-				System.out.println("수정 되었습니다.");
-				
-			} else { 
+				System.out.println("수정 되었습니다!");
+			} else {
 				System.out.println("일치하는 번호가 없습니다.");
 			}
 			
@@ -54,18 +50,9 @@ public class Run3 {
 		} catch (Exception e) {
 			System.out.println("수정 중 예외가 발생했습니다.");
 			e.printStackTrace();
-			
-			
 		}
 		
 		
 		
-		
-		
-		
-		
-		
-		
 	}
-
 }

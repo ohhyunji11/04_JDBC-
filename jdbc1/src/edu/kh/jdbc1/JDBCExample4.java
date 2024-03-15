@@ -21,13 +21,15 @@ public class JDBCExample4 {
 		// 단, 조회 결과가 없으면 "조회 결과 없음" 출력
 		
 		// 조회 결과가 있으면 아래와 같이 출력
+		
 		// 직급명 입력 : 부사장
-		// 급여 입력 : 5000000
+		// 급여 입력 : 3000000
+		
 		// 송종기 / 부사장 / 6000000 / 72000000
 		// 노옹철 / 부사장 / 3700000 / 44400000
 		// ...
 		
-		// Employee (empName, jobName, salary, annualIncome) 
+		// Employee (empName, jobName, salary, annualIncome)
 		
 		Connection conn = null;
 		Statement stmt = null;
@@ -37,24 +39,26 @@ public class JDBCExample4 {
 		
 		try {
 			
-			System.out.print("직급명 : ");
-			String job = sc.nextLine();
-			System.out.print("급여 : ");
-			int money = sc.nextInt();
+			System.out.print("직급명 입력 : ");
+			String inputJobName = sc.next();
+			
+			System.out.print("급여 입력 : ");
+			int inputSalary = sc.nextInt();
 			
 			
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
 			String url = "jdbc:oracle:thin:@localhost:1521:XE";
-			String user = "kh_ohj"; // 사용자계정
-			String pw = "kh1234"; // 비밀번호
+			String user = "kh_cmh"; 
+			String pw = "kh1234";
 			
-			conn = DriverManager.getConnection(url,user,pw);
+			conn = DriverManager.getConnection(url, user, pw);
 			
 			String sql = "SELECT EMP_NAME, JOB_NAME, SALARY, SALARY * 12 ANNUAL_INCOME"
 					+ " FROM EMPLOYEE"
 					+ " JOIN JOB USING(JOB_CODE)"
-					+ " WHERE JOB_NAME = '" + job + "' AND SALARY > '" + money + "'";
+					+ " WHERE JOB_NAME = '" + inputJobName + "'"
+					+ " AND SALARY > " + inputSalary;
 			
 			stmt = conn.createStatement();
 			
@@ -69,31 +73,41 @@ public class JDBCExample4 {
 				int salary = rs.getInt("SALARY");
 				int annualIncome = rs.getInt("ANNUAL_INCOME");
 				
-				list.add(new Employee(empName, jobName, salary, annualIncome));
+				list.add( new Employee(empName, jobName, salary, annualIncome) );
 				
 			}
 			
 			if(list.isEmpty()) {
 				System.out.println("조회 결과 없음");
+				
 			}else {
 				for(Employee emp : list) {
 					System.out.println(emp);
 				}
+				
 			}
 			
 			
-		}catch (Exception e) {
+			
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+			
+		} finally {
+			
 			try {
 				if(rs != null) rs.close();
 				if(stmt != null) stmt.close();
 				if(conn != null) conn.close();
-
-			}catch(Exception e) {
+				
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		
+		
+		
+		
+		
 		
 		
 		
