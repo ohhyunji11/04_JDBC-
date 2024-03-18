@@ -25,7 +25,7 @@ public class JDBCExample2 {
 			String ip = "localhost"; // DB 서버 컴퓨터 IP
 			String port = ":1521"; // 포트번호
 			String sid = ":XE"; // DB 이름
-			String user = "kh_cmh"; // 사용자계정
+			String user = "kh_ohj"; // 사용자계정
 			String pw = "kh1234"; // 비밀번호
 			
 			conn = DriverManager.getConnection(type+ip+port+sid, user, pw);

@@ -64,7 +64,7 @@ public class JDBCExample1 {
 			String sid = ":XE"; // DB 이름
 			
 			
-			String user = "kh_cmh"; // 사용자계정
+			String user = "kh_ohj"; // 사용자계정
 			
 			String pw = "kh1234"; // 비밀번호
 			
