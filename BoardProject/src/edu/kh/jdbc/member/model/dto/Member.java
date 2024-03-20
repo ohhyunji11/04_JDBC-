@@ -3,10 +3,10 @@ package edu.kh.jdbc.member.model.dto;
 public class Member {
 	
 	private int memberNo; // 회원번호
-	private String memberId; // 비밀번호
+	private String memberId; // 회원 아이디
 	private String memberPw; // 회원 비밀번호
-	private String memberName; //회원 이름
-	private String memeberGender; // 회원 성별
+	private String memberName; // 회원 이름
+	private String memberGender; // 회원 성별
 	private String enrollDate; // 가입일
 	private String unregisterFlag; // 탈퇴여부
 	
@@ -44,12 +44,12 @@ public class Member {
 		this.memberName = memberName;
 	}
 
-	public String getMemeberGender() {
-		return memeberGender;
+	public String getMemberGender() {
+		return memberGender;
 	}
 
-	public void setMemeberGender(String memeberGender) {
-		this.memeberGender = memeberGender;
+	public void setMemberGender(String memberGender) {
+		this.memberGender = memberGender;
 	}
 
 	public String getEnrollDate() {
@@ -67,5 +67,6 @@ public class Member {
 	public void setUnregisterFlag(String unregisterFlag) {
 		this.unregisterFlag = unregisterFlag;
 	}
-
+	
+	
 }

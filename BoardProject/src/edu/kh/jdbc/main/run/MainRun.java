@@ -7,7 +7,5 @@ public class MainRun {
 		
 		// MainView의 mainMenu 호출
 		new MainView().mainMenu();
-		
 	}
-
 }

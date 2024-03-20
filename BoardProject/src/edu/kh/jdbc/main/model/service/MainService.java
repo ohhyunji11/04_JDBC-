@@ -1,21 +1,21 @@
 package edu.kh.jdbc.main.model.service;
 
+import java.sql.Connection;
+
+import static edu.kh.jdbc.common.JDBCTemplate.*;
 import edu.kh.jdbc.main.model.dao.MainDAO;
 import edu.kh.jdbc.member.model.dto.Member;
-import static edu.kh.jdbc.common.JDBCTemplate.*;
-
-import java.sql.Connection;
 
 public class MainService {
 	
+	private MainDAO dao = new MainDAO();
+
 	/** 로그인 서비스
 	 * @param memberId
 	 * @param memberPw
 	 * @return member
 	 */
-	private MainDAO dao = new MainDAO();
-	
-	public Member login(String memberId, String memberPw) throws Exception  {
+	public Member login(String memberId, String memberPw) throws Exception{
 		
 		// 1. Connection 생성
 		Connection conn = getConnection();
@@ -25,7 +25,6 @@ public class MainService {
 		
 		// 3. Connection 반환
 		close(conn);
-		
 		
 		// 4. 결과 반환
 		return member;
@@ -39,10 +38,9 @@ public class MainService {
 		
 		Connection conn = getConnection();
 		
-		int result = dao.idPuplicationCheck(conn, memberId);
+		int result = dao.idDuplicationCheck(conn, memberId);
 		
 		close(conn);
-		
 		
 		return result;
 	}
@@ -56,18 +54,28 @@ public class MainService {
 		Connection conn = getConnection();
 		
 		// DAO 호출
-		 int result = dao.signUp(conn, member); // INSERT 수행
-		 
-		 // 트랜잭션 처리
-		 if(result > 0 ) commit(conn);
-		 else			  rollback(conn);
-		 
-		 close(conn);
-		 
+		int result = dao.signUp(conn, member); // INSERT 수행
+		
+		// 트랜잭션 처리
+		if(result > 0)	commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
 		
 		return result;
 	}
-	
-	
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
