@@ -56,6 +56,8 @@ public class MemberView {
 			    }
 				
 				
+			    
+			    
 			} catch(InputMismatchException e) {
 				System.out.println("\n*** 입력  형식이 올바르지 않습니다 ***\n");
 				sc.nextLine();

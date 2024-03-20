@@ -148,7 +148,7 @@ public class BoardDAO {
 		return result;
 	}
 	
-	public int updateBoard(Connection conn, String boardTitel, String board);
+	public int updateBoard(Connection conn, String boardTitel, String board, int board);
 	
 	int result = 0;
 	
@@ -159,9 +159,49 @@ public class BoardDAO {
 		
 	}
 	
-	 return 0;
+	 return result;
 	
-	
+ }
+
+	/**
+	 * @param conn
+	 * @return boardNo
+	 */
+	public int nextBoardNo(Connection conn) throws Exception {
+		
+		int boardNo = 0;
+		
+		try {
+			String sql = prop.getProperty("nextBoardNo");
+			
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next)) {
+				boardNo 
+			}
+			
+			
+			
+			
+		} finally {
+			
+		}
+		
+		return 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 	
 	
